@@ -4,7 +4,7 @@
 require "date"
 
 today = Date.today
-firstDay = Date.new(today.year, 11, 01)
+firstDay = Date.new(today.year, 12, 01)
 
 if today.month < 12
   puts "This year’s puzzle is not yetopen!"
@@ -18,6 +18,7 @@ num = number.to_i.to_s.rjust(2, '0')
 folder = "day#{num}"
 file = "day#{num}/day#{num}.rb"
 inputFile = "day#{num}/input"
+exampleFile = "day#{num}/example"
 
 puts "create floder #{folder}"
 system("mkdir -p #{folder}")
@@ -37,6 +38,7 @@ system("chmod +x #{file}")
 puts "create input file"
 
 system("touch #{inputFile}")
+system("touch #{exampleFile}")
 
 puts "OK! Solve this puzzle!"
 puts "https://adventofcode.com/#{today.year}/day/#{number.to_i}"
