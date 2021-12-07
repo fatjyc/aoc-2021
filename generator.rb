@@ -4,16 +4,23 @@
 require "date"
 
 today = Date.today
-firstDay = Date.new(today.year, 12, 01)
 
-if today.month < 12
-  puts "This year’s puzzle is not yetopen!"
-  exit(1)
+if ARGV && ARGV.size == 1
+  number = ARGV[0]
+else
+  firstDay = Date.new(today.year, 12, 01)
+
+  if today.month < 12
+    puts "This year’s puzzle is not yetopen!"
+    exit(1)
+  end
+
+  number = today - firstDay + 1
 end
 
-number = today - firstDay + 1
+number = number.to_i
 
-num = number.to_i.to_s.rjust(2, '0')
+num = number.to_s.rjust(2, '0')
 
 folder = "day#{num}"
 file = "day#{num}/day#{num}.rb"
@@ -41,4 +48,4 @@ system("touch #{inputFile}")
 system("touch #{exampleFile}")
 
 puts "OK! Solve this puzzle!"
-puts "https://adventofcode.com/#{today.year}/day/#{number.to_i}"
+puts "https://adventofcode.com/#{today.year}/day/#{number}"
